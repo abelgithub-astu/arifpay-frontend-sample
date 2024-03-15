@@ -25,6 +25,7 @@ const CartPage = () => {
       body,
       config
     );
+    console.log(res)
   };
 
   return (
