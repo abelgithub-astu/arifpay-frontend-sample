@@ -42,7 +42,7 @@ const CartPage = () => {
       body,
       config
     );
-    console.log(body)
+    
     console.log(res.data)
   };
 
