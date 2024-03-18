@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { CartContext } from "../CartContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
+const {
+  getExpireDateFromDate
+} = require('arifpay/lib/helper');
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
@@ -13,10 +16,11 @@ const CartPage = () => {
         Accepts: "application/json",
       },
     };
-    /* const body = {
-      items: cart
-    }; */
+    
     const domainURL = "https://arifpay-frontend-sample.vercel.app";
+    const date = new Date();
+    const expired = getExpireDateFromDate(date);
+      let amount = cart.map(e => e.price * e.quantity).reduce((e, c) => e + c)
     const body = {
       items: cart,
        notifyUrl: `${domainURL}`,
@@ -38,7 +42,8 @@ const CartPage = () => {
       body,
       config
     );
-    console.log("body"= body,res.data)
+    console.log(body)
+    console.log(res.data)
   };
 
   return (
