@@ -32,7 +32,7 @@ const CartPage = () => {
        errorUrl: `${domainURL}/error`,
        successUrl: `${domainURL}/success`
      };
-
+     console.log(body)
     const res = await axios.post(
       "https://gateway.arifpay.org/api/checkout/session",
       body,
