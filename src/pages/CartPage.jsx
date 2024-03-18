@@ -42,10 +42,10 @@ const CartPage = () => {
         ) : (
           <div className="grid grid-cols-1 gap-4">
             {cart.map((item) => (
-              <div>
+              <div className="flex">
               <div
                 key={item.id}
-                className="p-4 border-b-[3px] border-gray-300 "
+                className="p-4  "
               >
                 <img
                   src={item.image}
@@ -61,7 +61,7 @@ const CartPage = () => {
                   Remove
                 </button>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center border-b-[3px] border-gray-300">
               <button
                 className="bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-full px-2 py-1"
                 onClick={() => decreaseQuantity(item.id)}
