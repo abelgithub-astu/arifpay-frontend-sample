@@ -5,6 +5,7 @@ import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import SuccessPage from "./pages/SuccessPage";
 import ErrorPage from "./pages/ErrorPage";
+import NotifyPage from "./pages/NotifyPage";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/success" element={<SuccessPage />} />
           <Route path="/error" element={<ErrorPage />} />
+          <Route path="/notify" element={<NotifyPage />} />
         </Routes>
       </CartProvider>
     </Router>
