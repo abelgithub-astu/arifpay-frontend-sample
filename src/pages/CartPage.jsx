@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { CartContext } from "../CartContext";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import axios from "axios";
 const {
   getExpireDateFromDate
 } = require('arifpay/lib/helper');
 
 const CartPage = () => {
+  
   const { cart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
   const Checkout = async () => {
     const config = {
@@ -29,7 +30,7 @@ const CartPage = () => {
        bank: 'AWINETAA',
        amount: amount
        }, ],
-       paymentMethods: ["CARD"],
+       paymentMethods: ["TELEBIRR"],
        expireDate: expired,
        nonce: Math.floor(Math.random() * 10000).toString(),
        cancelUrl: `${domainURL}/notify`,
@@ -42,8 +43,22 @@ const CartPage = () => {
       body,
       config
     );
-    
+
+    const sessionId = res.data.data.sessionId
     console.log(res.data)
+    if(sessionId){
+      
+      
+      try {
+        const checkoutRes = await axios.get(`https://gateway.arifpay.org/api/sandbox/checkout/session/${sessionId}`, config)
+    console.log(checkoutRes)
+      } catch (error) {
+        console.log(error.response)
+      }
+     
+    }
+    
+   
   };
 
   return (
@@ -60,9 +75,9 @@ const CartPage = () => {
         ) : (
           <div className="grid grid-cols-1 gap-4">
             {cart.map((item) => (
-              <div className="flex border-b-[3px] border-gray-300">
+              <div key={item.id} className="flex border-b-[3px] border-gray-300">
               <div
-                key={item.id}
+                
                 className="p-4  "
               >
                 <img
