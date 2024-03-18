@@ -13,12 +13,28 @@ const CartPage = () => {
         Accepts: "application/json",
       },
     };
-    const body = {
+    /* const body = {
       items: cart
-    };
+    }; */
+    const domainURL = "https://arifpay-frontend-sample.vercel.app";
+    const body = {
+      items: cart,
+       notifyUrl: `${domainURL}`,
+       beneficiaries: [{
+         accountNumber: '10000000000',
+       bank: 'AWINETAA',
+       amount: amount
+       }, ],
+       paymentMethods: ["CARD"],
+       expireDate: expired,
+       nonce: Math.floor(Math.random() * 10000).toString(),
+       cancelUrl: `${domainURL}/notify`,
+       errorUrl: `${domainURL}/error`,
+       successUrl: `${domainURL}/success`
+     };
 
     const res = await axios.post(
-      "https://arifpay-backend-sample.onrender.com/api/create-checkout-session",
+      "https://gateway.arifpay.org/api/checkout/session",
       body,
       config
     );
