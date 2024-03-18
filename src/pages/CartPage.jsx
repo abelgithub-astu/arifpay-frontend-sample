@@ -8,7 +8,7 @@ const CartPage = () => {
   const Checkout = async () => {
     const config = {
       headers: {
-        /* "x-arifpay-key": "vYbDITI6j19eJZo0kBRIBPP6uLZ9jtIM", */
+        "x-arifpay-key": "vYbDITI6j19eJZo0kBRIBPP6uLZ9jtIM",
         "Content-Type": "application/json",
         Accepts: "application/json",
       },
