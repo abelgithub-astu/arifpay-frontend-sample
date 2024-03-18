@@ -28,13 +28,34 @@ const CartProvider = ({ children }) => {
     setCart(cart.filter((item) => item.id !== productId));
   };
 
+  const increaseQuantity = (productId) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === productId) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+
+  const decreaseQuantity = (productId) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === productId && item.quantity > 1) {
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+
+
   const clearCart = () => {
     setCart([]);
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart }}
+      value={{ cart, addToCart, removeFromCart, clearCart,decreaseQuantity, increaseQuantity }}
     >
       {children}
     </CartContext.Provider>

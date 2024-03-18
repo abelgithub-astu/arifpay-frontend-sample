@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const CartPage = () => {
-  const { cart, removeFromCart, clearCart } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
   const Checkout = async () => {
     const config = {
       headers: {
@@ -42,6 +42,7 @@ const CartPage = () => {
         ) : (
           <div className="grid grid-cols-1 gap-4">
             {cart.map((item) => (
+              <div>
               <div
                 key={item.id}
                 className="p-4 border-b-[3px] border-gray-300 "
@@ -60,7 +61,23 @@ const CartPage = () => {
                   Remove
                 </button>
               </div>
+              <div className="flex items-center">
+              <button
+                className="bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-full px-2 py-1"
+                onClick={() => decreaseQuantity(item.id)}
+              >
+                -
+              </button>
+              <span className="mx-2">{item.quantity}</span>
+              <button
+                className="bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-full px-2 py-1"
+                onClick={() => increaseQuantity(item.id)}
+              >
+                +
+              </button>
+            </div> </div>
             ))}
+            
           </div>
         )}
         {cart.length > 0 && (
