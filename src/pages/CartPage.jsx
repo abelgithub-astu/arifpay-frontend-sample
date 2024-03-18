@@ -52,7 +52,7 @@ const CartPage = () => {
       
       
       try {
-        const checkoutRes = await axios.get(`https://checkout.arifpay.org/checkout/${sessionId}`, config)
+        const checkoutRes = await axios.get(`https://gateway.arifpay.org/api/sandbox/checkout/session/${sessionId}`, config)
     console.log(checkoutRes)
       } catch (error) {
         console.log(error.response)
