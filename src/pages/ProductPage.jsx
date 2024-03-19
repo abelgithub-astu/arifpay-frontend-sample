@@ -16,7 +16,7 @@ const ProductPage = () => {
     {
       id: 1,
       name: "Banana",
-      price: 10,
+      price: 12,
       quantity: 1,
       image:
         "https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bunch-of-bananas-67e91d5.jpg?quality=90&resize=440,400",
@@ -24,14 +24,14 @@ const ProductPage = () => {
     {
       id: 2,
       name: "Mangoo",
-      price: 20,
+      price: 21,
       quantity: 1,
       image: "https://ichef.bbci.co.uk/images/ic/1920x1080/p06hk0h6.jpg",
     },
     {
       id: 3,
       name: "Papaya",
-      price: 25,
+      price: 27,
       quantity: 1,
       image:
         "https://www.heart.org/-/media/Images/News/2023/October-2023/1013EIOLIPapaya_SC.jpg",
@@ -39,7 +39,7 @@ const ProductPage = () => {
     {
       id: 4,
       name: "Apple",
-      price: 30,
+      price: 37,
       quantity: 1,
       image:
         "https://cdn.britannica.com/22/187222-050-07B17FB6/apples-on-a-tree-branch.jpg",

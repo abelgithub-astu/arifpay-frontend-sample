@@ -25,15 +25,16 @@ const CartPage = () => {
     //console.log('updatedCart',updatedCart)
     const domainURL = "https://arifpay-frontend-sample.vercel.app";
     const date = new Date();
+     date.setTime(date.getTime() + 10 * 3_600_000);
     const expired = getExpireDateFromDate(date);
       let amount = cart.map(e => e.price * e.quantity).reduce((e, c) => e + c)
     const body = {
       items: updatedCart,
-      phone:"251944294981",
-       email:"example@arifpay.net",
+      phone:"251980430777",
+       email:"abeljo@gmail.com",
        notifyUrl: `${domainURL}`,
        beneficiaries: [{
-         accountNumber: '10000000000',
+         accountNumber: '1000262501447',
        bank: 'AWINETAA',
        amount: amount
        }, ],
@@ -44,7 +45,7 @@ const CartPage = () => {
        errorUrl: `${domainURL}/error`,
        successUrl: `${domainURL}/success`
      };
-     
+     console.log(body)
     const res = await axios.post(
       "https://gateway.arifpay.org/api/checkout/session",
       body,
@@ -66,7 +67,6 @@ const CartPage = () => {
       } catch (error) {
         console.log(error)
       }
-        
     }
     
    
