@@ -17,13 +17,18 @@ const CartPage = () => {
         Accepts: "application/json",
       },
     };
-    
+    const updatedCart = await cart.map(item => {
+      const { id, ...rest } = item; 
+      return rest; 
+    });
+
+    //console.log('updatedCart',updatedCart)
     const domainURL = "https://arifpay-frontend-sample.vercel.app";
     const date = new Date();
     const expired = getExpireDateFromDate(date);
       let amount = cart.map(e => e.price * e.quantity).reduce((e, c) => e + c)
     const body = {
-      items: cart,
+      items: updatedCart,
       phone:"251944294981",
        email:"example@arifpay.net",
        notifyUrl: `${domainURL}`,
@@ -46,18 +51,22 @@ const CartPage = () => {
       config
     );
 
-    const sessionId = res.data.data.sessionId
+    const PaymentUrl = res.data.data.paymentUrl
     console.log(res.data)
-    if(sessionId){
-      
-      
+    if(PaymentUrl){
       try {
-        const checkoutRes = await axios.get(`https://gateway.arifpay.org/api/sandbox/checkout/session/${sessionId}`, config)
-    console.log(checkoutRes)
+        const headers = {
+          "x-arifpay-key": "vYbDITI6j19eJZo0kBRIBPP6uLZ9jtIM",
+          "Content-Type": "application/json",
+          Accepts: "application/json",
+        };
+      
+        const headerParams = Object.keys(headers).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(headers[key])).join('&');
+       window.location.href = `${PaymentUrl}?${headerParams}`;
       } catch (error) {
-        console.log(error.response)
+        console.log(error)
       }
-     
+        
     }
     
    
